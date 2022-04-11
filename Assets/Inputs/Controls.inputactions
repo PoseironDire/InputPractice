@@ -1,5 +1,5 @@
 {
-    "name": "Controller",
+    "name": "Controls",
     "maps": [
         {
             "name": "Player",
@@ -24,16 +24,16 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "RightClick",
-                    "type": "Button",
-                    "id": "dc568f13-d568-4ed0-a495-a29e9bcd4d99",
-                    "expectedControlType": "Button",
+                    "name": "LooRC",
+                    "type": "Value",
+                    "id": "11cf3b31-8c18-4736-bda0-384cbe438cdd",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
-                    "name": "Fire",
+                    "name": "Attack",
                     "type": "Button",
                     "id": "14aa5a3c-bb67-4733-939a-eb39b1288464",
                     "expectedControlType": "Button",
@@ -180,7 +180,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Fire",
+                    "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -191,18 +191,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Fire",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "05871774-33aa-409f-a4ba-78a5176c5bf9",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "RightClick",
+                    "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -225,6 +214,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Boost",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7d2385c3-632d-45b2-8d89-b05f41ec4f16",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "LooRC",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

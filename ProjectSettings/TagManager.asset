@@ -3,22 +3,24 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Prop
+  - DamageSource
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - DamageSource
   - Water
   - UI
   - 
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Player 1
+  - Player 2
+  - Player 3
+  - Player 4
   - 
   - 
   - 

@@ -1,21 +1,42 @@
 using UnityEngine;
+using Cinemachine;
 
 public class PlayerCamera : MonoBehaviour
 {
-    [SerializeField][Range(0, 30)] float viewSize = 10; //View Size
-    [SerializeField][Range(0, 1)] float cameraDamp = 0.5f; //Camera Damp
-    [SerializeField] Camera cam; //Camera
-    [SerializeField] Transform target; //Camera Target
-    [SerializeField] Rigidbody2D playerRigidbody; //Player Rigidbody
-    Vector3 velocity = Vector3.zero; //Vector Zero
+    public float viewSize; //View Size
+    Rigidbody2D playerRigidbody; //Player Rigidbody
+    CinemachineVirtualCamera virtualCam; //Virtual Camera
+    Camera cam; //Camera
+
+    void Awake()
+    {
+        cam = GetComponentInChildren<Camera>();
+        playerRigidbody = GetComponentInChildren<Rigidbody2D>();
+        virtualCam = GetComponentInChildren<CinemachineVirtualCamera>();
+    }
+
+    void Start()
+    {
+        //Assign Layers To Players
+        MovementController[] characterMovements = FindObjectsOfType<MovementController>();
+        int layer = characterMovements.Length + 9;
+
+        virtualCam.gameObject.layer = layer;
+
+        int bitMask = (1 << layer)
+            | (1 << 0)
+            | (1 << 1)
+            | (1 << 2)
+            | (1 << 4)
+            | (1 << 5)
+            | (1 << 8);
+
+        cam.cullingMask = bitMask;
+        cam.gameObject.layer = layer;
+    }
 
     void FixedUpdate()
     {
-        float zoomOut = playerRigidbody.velocity.magnitude * 0.1f; cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, viewSize + zoomOut, 0.1f); //View Size Zooming
-
-        Vector3 point = cam.WorldToViewportPoint(target.position); //Follow Camera Target
-        Vector3 delta = target.position - cam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, point.z));
-        Vector3 destination = new Vector3(target.position.x, target.position.y, -10) + delta;
-        transform.position = Vector3.SmoothDamp(transform.position, destination, ref velocity, cameraDamp);
+        float zoomOut = playerRigidbody.velocity.magnitude * 0.2f; virtualCam.m_Lens.OrthographicSize = Mathf.Lerp(virtualCam.m_Lens.OrthographicSize, viewSize + zoomOut, 0.1f); //Zooming
     }
 }

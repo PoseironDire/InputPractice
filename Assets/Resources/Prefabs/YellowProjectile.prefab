@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1299597185242740007
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3453240819108114599}
+  m_Layer: 0
+  m_Name: HitEffectSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3453240819108114599
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1299597185242740007}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2161074175261597290}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4460747934266336926
 GameObject:
   m_ObjectHideFlags: 0
@@ -13,9 +43,9 @@ GameObject:
   - component: {fileID: 8442800134906320572}
   - component: {fileID: 2494246890116001956}
   - component: {fileID: 1291764324170196548}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: YellowProjectile
-  m_TagString: Projectile
+  m_TagString: DamageSource
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31,7 +61,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 2, z: 1}
   m_Children:
-  - {fileID: 5786585981321847083}
+  - {fileID: 3453240819108114599}
   - {fileID: 674139733752738533}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -95,8 +125,8 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: ff8e36dd7d19b524a8bc706382573850, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.3
-  m_Pitch: 2
+  m_Volume: 0.1
+  m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -191,9 +221,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b22b3e5a292c3034b88a3fd0a48e6a50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitEffectPrefab: {fileID: 2583337556275541420, guid: 2a8eb08c55622e849a1e221b7cd9c5cd, type: 3}
-  hitEffectSpawn: {fileID: 5786585981321847083}
-  visual: {fileID: 8135634083383203611}
 --- !u!1 &8135634083383203611
 GameObject:
   m_ObjectHideFlags: 0
@@ -206,7 +233,7 @@ GameObject:
   - component: {fileID: 6000450845590995516}
   - component: {fileID: 5051518613378011798}
   - component: {fileID: 5944789861709168559}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -266,7 +293,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 8
   m_Sprite: {fileID: 7980237580860590809, guid: 474aec64f31b32145baad5fb4ddc9266, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -338,33 +365,3 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
---- !u!1 &8198727787961034992
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5786585981321847083}
-  m_Layer: 3
-  m_Name: HitEffectSpawn
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5786585981321847083
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8198727787961034992}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2161074175261597290}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
