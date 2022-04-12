@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class MovementController : Controller
 {
@@ -35,23 +34,21 @@ public class MovementController : Controller
         //Movement
         Move();
         //Rotation
-        LookGP();
+        Look();
         //Boosting
         if (boost || rushing) Boost();
         //Firing
-        if (attack || attacking) Attack();
+        if (use || attacking) Use();
     }
+
     void Move()
     {
         rigidBody.AddForce(cam.transform.rotation * move * (moveForce + applyMovePenalty + applyrunBonus)); //Apply X Movement
     }
-    void LookGP()
+    void Look()
     {
-        Vector3 difference = difference = cam.ScreenToWorldPoint(lookRC) - transform.position;
         //Rotate Player's Front Parallel To Joystick Based On Screen
-        if (lookGP != Vector2.zero) transform.up = Vector3.SmoothDamp(transform.up, cam.transform.rotation * new Vector3(lookGP.x * turnForce, lookGP.y * turnForce), ref velocity, timeToTurn);
-        //Rotate Player's Front Twoards Mouse Based On Screen
-        else if (Mouse.current.rightButton.isPressed) transform.up = Vector3.SmoothDamp(transform.up, cam.transform.rotation * new Vector3(difference.x * turnForce, difference.y * turnForce), ref velocity, timeToTurn * 2);
+        if (look != Vector2.zero) transform.up = Vector3.SmoothDamp(transform.up, cam.transform.rotation * new Vector3(look.x * turnForce, look.y * turnForce), ref velocity, timeToTurn);
         else LookFree();
     }
 
@@ -61,7 +58,7 @@ public class MovementController : Controller
         transform.up = Vector3.SmoothDamp(transform.up, cam.transform.rotation * new Vector3(move.x * turnForce, move.y * turnForce), ref velocity, timeToTurn);
     }
 
-    void Attack()
+    void Use()
     {
         weaponController.UseWeapon();
     }

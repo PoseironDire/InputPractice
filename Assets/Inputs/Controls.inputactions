@@ -15,7 +15,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "LookGP",
+                    "name": "Look",
                     "type": "Value",
                     "id": "a339551f-5646-4019-8d0a-8016bca0a2ca",
                     "expectedControlType": "Vector2",
@@ -24,16 +24,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "LooRC",
-                    "type": "Value",
-                    "id": "11cf3b31-8c18-4736-bda0-384cbe438cdd",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "Attack",
+                    "name": "Use",
                     "type": "Button",
                     "id": "14aa5a3c-bb67-4733-939a-eb39b1288464",
                     "expectedControlType": "Button",
@@ -169,7 +160,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "LookGP",
+                    "action": "Look",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -180,7 +171,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Attack",
+                    "action": "Use",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -191,7 +182,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Attack",
+                    "action": "Use",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -214,17 +205,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Boost",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "7d2385c3-632d-45b2-8d89-b05f41ec4f16",
-                    "path": "<Mouse>/position",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "LooRC",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

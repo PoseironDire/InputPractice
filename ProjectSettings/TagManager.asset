@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Prop
   - DamageSource
+  - GameAudio
   layers:
   - Default
   - TransparentFX
