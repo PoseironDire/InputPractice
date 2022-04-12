@@ -6,11 +6,9 @@ public class PlayerManager : MonoBehaviour
     [HideInInspector] public Controller[] players; //Individual Player Array
     PlayerHost playerManager;
     Rigidbody2D playerRigidbody;
-    CinemachineVirtualCamera virtualCam;
-    Camera cam;
+    CinemachineVirtualCamera virtualCam; Camera cam;
 
-    public float viewSize;
-    float splitViewSize;
+    public float viewSize; float splitViewSize;
 
     void Awake()
     {
@@ -23,7 +21,7 @@ public class PlayerManager : MonoBehaviour
 
     void Start()
     {
-        //Assign Layers To Players
+        //Assign Layers To Players (No Idea What This Really Does It Just Works)
         int layer = players.Length + 9;
         virtualCam.gameObject.layer = layer;
         int bitMask = (1 << layer)
@@ -78,6 +76,6 @@ public class PlayerManager : MonoBehaviour
 
     void FixedUpdate()
     {
-        float zoomOut = playerRigidbody.velocity.magnitude * 0.2f; virtualCam.m_Lens.OrthographicSize = Mathf.Lerp(virtualCam.m_Lens.OrthographicSize, viewSize + splitViewSize + zoomOut, 0.1f); //Zooming
+        float zoomOut = playerRigidbody.velocity.magnitude * 0.2f; virtualCam.m_Lens.OrthographicSize = Mathf.Lerp(virtualCam.m_Lens.OrthographicSize, viewSize + splitViewSize + zoomOut, 0.05f); //Zooming
     }
 }

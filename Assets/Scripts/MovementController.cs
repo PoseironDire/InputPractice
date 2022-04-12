@@ -13,8 +13,6 @@ public class MovementController : Controller
     [Range(0, 100)] public float turnForce = 10; //Turn Force
     [Range(0, 5)] public float timeToTurn = 0.3f; //Smooting Time For Turning
 
-
-
     void Awake()
     {
         rigidBody = GetComponent<Rigidbody2D>();
@@ -58,7 +56,7 @@ public class MovementController : Controller
         if (use || weaponController.isUsing) weaponController.UseWeapon();
     }
 
-    bool boosted = false;
+    bool boosted = false; //Allows For Toggle Function
     bool isRunning = false; //True When Running
     public float applyMoveRunBonus = 0f;
     void Boost() //Running Method

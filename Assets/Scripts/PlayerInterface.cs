@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInterface : MonoBehaviour
+public class PlayerInterface : MonoBehaviour //WIP
 {
     GameObject[] rightButtons = new GameObject[4];
 

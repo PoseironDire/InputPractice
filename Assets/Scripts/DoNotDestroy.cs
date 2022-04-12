@@ -1,12 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DoNotDestroy : MonoBehaviour
 {
     void Awake()
     {
-        GameObject[] musicObj = GameObject.FindGameObjectsWithTag("GameAudio");
+        //Used On Game Object That Should Not Be Destroyed Across Scenes
+        GameObject[] musicObj = GameObject.FindGameObjectsWithTag("DoNotDestroy");
         if (musicObj.Length > 1)
         {
             Destroy(this.gameObject);

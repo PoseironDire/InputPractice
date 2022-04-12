@@ -2089,7 +2089,7 @@ GameObject:
   - component: {fileID: 1356053173}
   m_Layer: 0
   m_Name: AudioManager
-  m_TagString: GameAudio
+  m_TagString: DoNotDestroy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

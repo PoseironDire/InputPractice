@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class YellowProjectile : MonoBehaviour
 {
-    Rigidbody2D rb2D; //Rigidbody
-    WeaponController weaponController; //Player
-    GameObject hitEffectPrefab; //Hit Effect
-    Transform visual; //Visual
-    Transform hitEffectSpawn; //Hit Effect Spawn
+    Rigidbody2D rb2D;
+    WeaponController weaponController;
+    GameObject hitEffectPrefab;
+    Transform visual;
+    Transform hitEffectSpawn;
 
     void Awake()
     {
@@ -16,7 +16,7 @@ public class YellowProjectile : MonoBehaviour
         visual = transform.Find("Visual");
         hitEffectSpawn = transform.Find("HitEffectSpawn");
 
-        rb2D.velocity = transform.up * weaponController.initialProjectileVelocity + transform.right * UnityEngine.Random.Range(weaponController.initialProjectileSpread, -weaponController.initialProjectileSpread); //Velocity
+        rb2D.velocity = transform.up * weaponController.initialProjectileVelocity + transform.right * UnityEngine.Random.Range(weaponController.initialProjectileSpread, -weaponController.initialProjectileSpread); //Apply Velocity
         GetComponent<AudioSource>().pitch = UnityEngine.Random.Range(GetComponent<AudioSource>().pitch, GetComponent<AudioSource>().pitch + 2); //Random Bitch
         Destroy(this.gameObject, 1); //Life Time
     }
