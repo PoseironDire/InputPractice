@@ -4,19 +4,15 @@ public class WeaponController : MonoBehaviour
 {
     MovementController characterController;
 
-    public bool ranged = false; //Is Ranged
-    GameObject projectilePrefab; //Projectile
-    Transform projectileSpawn; //Projectile Spawn Point
+    public bool ranged = false;
+    GameObject projectilePrefab;
+    Transform projectileSpawn;
     [Range(0, 300)] public float initialProjectileVelocity; //Projectile Speed
     [Range(0, 50)] public float initialProjectileSpread; //Projectile Spread
 
-    [Range(0, 5)] public float timeBetweenBursts; //Fires Per Second
-    [Range(1, 10)] public int projectileBurst; //Fires Per Second
-    [Range(0.1f, 1)] public float burstTime; //Time for Burst To Finish
-
-    float timeSinceLastFire = 0f; //Time Since Last Fire
-    float timeSinceLastBurst = 0f; //Time Since Last Burst
-    int storedShots = 0;
+    [Range(0, 5)] public float useTime; //Time It Takes To Use
+    [Range(1, 10)] public int burstAmount; //Amount of Times An Action Will Be Done In A Single Use
+    [Range(0.1f, 1)] public float timeForBurst; //Time For All Those Actions To Finish
 
     void Awake()
     {
@@ -30,35 +26,39 @@ public class WeaponController : MonoBehaviour
         if (ranged) Shoot();
     }
 
+    [HideInInspector] public bool isUsing = false; //True When Using
+    [HideInInspector] public float applyMoveUsePenalty = 0f;
+
+    float actionTimer = 0f; //Tracker For When An Action Can Be Triggered Again
+    float useTimer = 0f; //Tracker For When Use Can Be Used Again
+    int storedShots = 0;
     void Shoot()
     {
-        if (!characterController.attacking) //Trigger Burst
+        if (!isUsing) //Trigger Use
         {
             storedShots = 0;
-            timeSinceLastBurst = 0;
-            characterController.attacking = true;
+            useTimer = 0;
+            isUsing = true;
         }
 
-        if (characterController.attacking && timeSinceLastFire > ((timeBetweenBursts * (burstTime * 10)) / (float)projectileBurst) / 10 && storedShots < projectileBurst)
+        if (isUsing && actionTimer > ((useTime * (timeForBurst * 10)) / (float)burstAmount) / 10 && storedShots < burstAmount)
         {
-            characterController.applyMovePenalty = characterController.attackMovePenalty;
-            GameObject projectile = Instantiate(projectilePrefab, projectileSpawn.position, projectileSpawn.rotation); //Spawn Projectile
-            projectile.transform.SetParent(transform.parent); //Make The Projectile A Child Of This Game Object 
+            applyMoveUsePenalty = characterController.attackMovePenalty;
+            GameObject projectile = Instantiate(projectilePrefab, projectileSpawn.position, projectileSpawn.rotation); /**/ projectile.transform.SetParent(transform.parent); //Spawn & Make The Projectile A Child Of This Game Object 
             Physics2D.IgnoreCollision(projectile.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-            timeSinceLastFire = 0;
-            storedShots++;
+            actionTimer = 0; /**/ storedShots++;
         }
-        else characterController.applyMovePenalty = Mathf.Lerp(characterController.applyMovePenalty, 0, 0.1f); //Return To Original Move Speed
+        else applyMoveUsePenalty = Mathf.Lerp(applyMoveUsePenalty, 0, 0.1f); //Return To Original Move Speed
 
-        if (timeSinceLastBurst > timeBetweenBursts)
+        if (useTimer > useTime)
         {
-            characterController.attacking = false;
+            isUsing = false;
         }
     }
 
     void FixedUpdate()
     {
-        timeSinceLastFire += Time.deltaTime;
-        timeSinceLastBurst += Time.deltaTime;
+        actionTimer += Time.deltaTime;
+        useTimer += Time.deltaTime;
     }
 }
