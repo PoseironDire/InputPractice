@@ -10,6 +10,7 @@ public class MovementController : Controller
     [Range(10, 500)] public float moveForce = 500; //Movement Force
     [Range(10, 500)] public float runMoveBonus = 250; //Additional Movement While Running
     [Range(-500, -10)] public float attackMovePenalty = -450; //Penalty Movement While Attacking
+    [Range(-10, -1)] public float attackRotationPenalty = -8; //Penalty Rotation While Attacking
     [Range(0, 100)] public float turnForce = 10; //Turn Force
     [Range(0, 5)] public float timeToTurn = 0.3f; //Smooting Time For Turning
 
@@ -41,14 +42,14 @@ public class MovementController : Controller
     void Look()
     {
         //Rotate Player's Front Parallel To Right Joystick Based On Screen
-        if (look != Vector2.zero) transform.up = Vector3.SmoothDamp(transform.up, cam.transform.rotation * new Vector3(look.x * turnForce, look.y * turnForce), ref velocity, timeToTurn);
+        if (look != Vector2.zero) transform.up = Vector3.SmoothDamp(transform.up, cam.transform.rotation * look * (turnForce + weaponController.applyRotationUsePenalty), ref velocity, timeToTurn);
         else LookFree(); //Or Rotate Player's Front Parallel To Left Joystick Based On Screen
     }
 
     void LookFree()
     {
         //Rotate Player's Front Parallel To Left Joystick Based On Screen
-        transform.up = Vector3.SmoothDamp(transform.up, cam.transform.rotation * new Vector3(move.x * turnForce, move.y * turnForce), ref velocity, timeToTurn);
+        transform.up = Vector3.SmoothDamp(transform.up, cam.transform.rotation * move * (turnForce + weaponController.applyRotationUsePenalty), ref velocity, timeToTurn);
     }
 
     void Use()
