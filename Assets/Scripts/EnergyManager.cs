@@ -21,6 +21,20 @@ public class EnergyManager : MonoBehaviour
         }
     }
 
+    public void DealDamage()
+    {
+        foreach (SpriteRenderer renderer in originalColor.Keys) //Red Tint If Hit By Damage Source (White Color Of The Object Already Is Red)
+        {
+            if (renderer.color != Color.red)
+                renderer.color = Color.red;
+            else
+                renderer.color = Color.white;
+        }
+
+        DamageIndicator indicator = Instantiate(damageText, transform.position, Quaternion.identity).GetComponent<DamageIndicator>(); /**/ indicator.transform.SetParent(transform.parent); //Spawn & Make The Indicator A Child Of This Game Object
+        indicator.SetDamageText(Random.Range(1, 100));
+    }
+
     void FixedUpdate()
     {
         foreach (SpriteRenderer renderer in originalColor.Keys) //Lerp Color
@@ -33,16 +47,7 @@ public class EnergyManager : MonoBehaviour
     {
         if (collision.gameObject.tag == "DamageSource")
         {
-            foreach (SpriteRenderer renderer in originalColor.Keys) //Red Tint If Hit By Damage Source (White Color Of The Object Already Is Red)
-            {
-                if (renderer.color != Color.red)
-                    renderer.color = Color.red;
-                else
-                    renderer.color = Color.white;
-            }
-
-            DamageIndicator indicator = Instantiate(damageText, transform.position, Quaternion.identity).GetComponent<DamageIndicator>(); /**/ indicator.transform.SetParent(transform.parent); //Spawn & Make The Indicator A Child Of This Game Object
-            indicator.SetDamageText(Random.Range(1, 100));
+            DealDamage();
         }
     }
 }

@@ -5,16 +5,16 @@ public class YellowProjectile : MonoBehaviour
     Rigidbody2D rb2D;
     WeaponController weaponController;
     GameObject hitEffectPrefab;
-    Transform visual;
     Transform hitEffectSpawn;
+    Transform visual;
 
     void Awake()
     {
         rb2D = GetComponent<Rigidbody2D>();
         weaponController = FindObjectOfType<WeaponController>();
         hitEffectPrefab = (GameObject)Resources.Load("Prefabs/OrangeExplosion", typeof(GameObject));
-        visual = transform.Find("Visual");
         hitEffectSpawn = transform.Find("HitEffectSpawn");
+        visual = transform.Find("Visual");
 
         rb2D.velocity = transform.up * weaponController.initialProjectileVelocity + transform.right * UnityEngine.Random.Range(weaponController.initialProjectileSpread, -weaponController.initialProjectileSpread); //Apply Velocity
         GetComponent<AudioSource>().pitch = UnityEngine.Random.Range(GetComponent<AudioSource>().pitch, GetComponent<AudioSource>().pitch + 2); //Random Bitch

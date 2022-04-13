@@ -2,15 +2,14 @@ using UnityEngine;
 
 public class MovementController : Controller
 {
+    public Camera cam;
     Rigidbody2D rigidBody;
-    Controller controller; //Player Controller
+    Controller controller;
     WeaponController weaponController;
     Vector3 velocity = Vector3.zero;
     [Space]
     [Range(10, 500)] public float moveForce = 500; //Movement Force
     [Range(10, 500)] public float runMoveBonus = 250; //Additional Movement While Running
-    [Range(-500, -10)] public float attackMovePenalty = -450; //Penalty Movement While Attacking
-    [Range(-10, -1)] public float attackRotationPenalty = -8; //Penalty Rotation While Attacking
     [Range(0, 100)] public float turnForce = 10; //Turn Force
     [Range(0, 5)] public float timeToTurn = 0.3f; //Smooting Time For Turning
 
