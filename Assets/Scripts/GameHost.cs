@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerHost : MonoBehaviour
+public class GameHost : MonoBehaviour
 {
     [HideInInspector] public Controller[] players; //Global Player Array
     Camera cam;

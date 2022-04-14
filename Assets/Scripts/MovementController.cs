@@ -2,28 +2,15 @@ using UnityEngine;
 
 public class MovementController : Controller
 {
-    public Camera cam;
-    Rigidbody2D rigidBody;
-    Controller controller;
-    WeaponController weaponController;
-    Vector3 velocity = Vector3.zero;
-    [Space]
     [Range(10, 500)] public float moveForce = 500; //Movement Force
     [Range(10, 500)] public float runMoveBonus = 250; //Additional Movement While Running
     [Range(0, 100)] public float turnForce = 10; //Turn Force
     [Range(0, 5)] public float timeToTurn = 0.3f; //Smooting Time For Turning
 
-    void Awake()
-    {
-        rigidBody = GetComponent<Rigidbody2D>();
-        controller = GetComponent<Controller>();
-        weaponController = GetComponent<WeaponController>();
-
-        GetComponentInChildren<TrailRenderer>().emitting = false; //Disable Trail
-    }
-
     void FixedUpdate()
     {
+        GetComponentInChildren<TrailRenderer>().emitting = false; //Disable Trail
+
         //Movement
         Move();
         //Rotation
@@ -32,41 +19,49 @@ public class MovementController : Controller
         Boost();
         //Using
         Use();
+        //Forms
+        Forms();
     }
 
     void Move()
     {
-        rigidBody.AddForce(cam.transform.rotation * move * (moveForce + weaponController.applyMoveUsePenalty + applyMoveRunBonus)); //Apply Movement Force
+        GetComponent<Rigidbody2D>().AddForce(cam.transform.rotation * moveInput * (moveForce + weaponController.applyMoveUsePenalty + applyMoveRunBonus)); //Apply Movement Force
     }
+
+    Vector3 velocity = Vector3.zero;
     void Look()
     {
         //Rotate Player's Front Parallel To Right Joystick Based On Screen
-        if (look != Vector2.zero) transform.up = Vector3.SmoothDamp(transform.up, cam.transform.rotation * look * (turnForce + weaponController.applyRotationUsePenalty), ref velocity, timeToTurn);
+        if (lookInput != Vector2.zero) transform.up = Vector3.SmoothDamp(transform.up, cam.transform.rotation * lookInput * (turnForce + weaponController.applyRotationUsePenalty), ref velocity, timeToTurn);
         else LookFree(); //Or Rotate Player's Front Parallel To Left Joystick Based On Screen
     }
-
     void LookFree()
     {
         //Rotate Player's Front Parallel To Left Joystick Based On Screen
-        transform.up = Vector3.SmoothDamp(transform.up, cam.transform.rotation * move * (turnForce + weaponController.applyRotationUsePenalty), ref velocity, timeToTurn);
+        transform.up = Vector3.SmoothDamp(transform.up, cam.transform.rotation * moveInput * (turnForce + weaponController.applyRotationUsePenalty), ref velocity, timeToTurn);
     }
 
     void Use()
     {
-        if (use || weaponController.isUsing) weaponController.UseWeapon();
+        if (useInput || weaponController.isUsing) weaponController.UseWeapon();
+    }
+
+    void Forms()
+    {
+        FormSelector();
     }
 
     bool boosted = false; //Allows For Toggle Function
     bool isRunning = false; //True When Running
-    public float applyMoveRunBonus = 0f;
+    float applyMoveRunBonus = 0f;
     void Boost() //Running Method
     {
-        if (boost && !boosted) //Toggle Function
+        if (boostInput && !boosted) //Toggle Function
         {
             boosted = true;
             isRunning = !isRunning;
         }
-        else if (!boost) boosted = false;
+        else if (!boostInput) boosted = false;
 
         if (isRunning) //Start Running
         {
@@ -74,11 +69,10 @@ public class MovementController : Controller
             GetComponentInChildren<TrailRenderer>().emitting = true; //Enable Trail
         }
         float deadzone = 0.2f; //For Joysticks
-        if (move.y <= deadzone && move.y >= -deadzone && move.x <= deadzone && move.x >= -deadzone || !isRunning) //Stop Running If Input Is Lost
+        if (moveInput.y <= deadzone && moveInput.y >= -deadzone && moveInput.x <= deadzone && moveInput.x >= -deadzone || !isRunning) //Stop Running If Input Is Lost
         {
             isRunning = false;
             applyMoveRunBonus = 0;
-            GetComponentInChildren<TrailRenderer>().emitting = false; //Disable Trail
         }
     }
 }

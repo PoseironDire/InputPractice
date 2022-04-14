@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class WeaponController : MonoBehaviour
+public class WeaponController : MonoBehaviour //(Spaghetti code atm, WIP)
 {
     public Transform handle;
     public Animator swingAnimator;
@@ -14,7 +14,7 @@ public class WeaponController : MonoBehaviour
     GameObject projectilePrefab;
     GameObject projectileSpawn;
 
-    [Range(1, 2)] public int weaponType = 1;
+    [HideInInspector] public int weaponType = 1;
     [Range(0, 5)] public float useTime; //Time It Takes To Use
     [Space]
     [Range(0, 2)] public float swingRange = 0.5f; //Swing Range
@@ -28,7 +28,6 @@ public class WeaponController : MonoBehaviour
     [Range(-500, -10)] public float attackMovePenalty = -450; //Penalty Movement While Attacking
     [Range(-10, -1)] public float attackRotationPenalty = -8; //Penalty Rotation While Attacking
 
-    int burstsCounted = 0;
     float actionTimer = 0f; //Tracker For When An Action Can Be Triggered Again
     float useTimer = 0f; //Tracker For When Use Can Be Used Again
 
@@ -42,13 +41,14 @@ public class WeaponController : MonoBehaviour
     public void UseWeapon()
     {
         if (weaponType == 1) Shoot();
-        else if (weaponType == 2) Swing();
+        if (weaponType == 2) Swing();
     }
 
     [HideInInspector] public bool isUsing = false; //True When Using
     [HideInInspector] public float applyMoveUsePenalty = 0f;
     [HideInInspector] public float applyRotationUsePenalty = 0f;
 
+    int burstsCounted = 0;
     void Shoot()
     {
         if (!isUsing) //Trigger Use

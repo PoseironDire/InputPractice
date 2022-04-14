@@ -4,7 +4,7 @@ using Cinemachine;
 public class PlayerManager : MonoBehaviour
 {
     [HideInInspector] public Controller[] players; //Individual Player Array
-    PlayerHost playerManager;
+    GameHost playerManager;
     Rigidbody2D playerRigidbody;
     CinemachineVirtualCamera virtualCam; Camera cam;
 
@@ -13,7 +13,7 @@ public class PlayerManager : MonoBehaviour
     void Awake()
     {
         players = FindObjectsOfType<Controller>();
-        playerManager = FindObjectOfType<PlayerHost>();
+        playerManager = FindObjectOfType<GameHost>();
         cam = GetComponentInChildren<Camera>();
         playerRigidbody = GetComponentInChildren<Rigidbody2D>();
         virtualCam = GetComponentInChildren<CinemachineVirtualCamera>();

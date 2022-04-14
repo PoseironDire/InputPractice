@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 public class EnergyManager : MonoBehaviour
 {
+    Dictionary<SpriteRenderer, Color> originalColor = new Dictionary<SpriteRenderer, Color>(); //Dictionary For Colors
     GameObject damageText;
 
     public bool colorize;
-    Dictionary<SpriteRenderer, Color> originalColor = new Dictionary<SpriteRenderer, Color>(); //Dictionary For Colors
 
     void Start()
     {
