@@ -1609,6 +1609,7 @@ MonoBehaviour:
   swingHitbox: {fileID: 6845401391917238463}
   ranged: {fileID: 1551264331320977473}
   melee: {fileID: 8753400218967367460}
+  projectileSpawn: {fileID: 3976416058379674069}
   weaponType: 2
   useTime: 0.7
   swingRange: 1.2
@@ -1736,6 +1737,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentForm: 0
+  rightButtons:
+  - {fileID: 5901637704332115223}
+  - {fileID: 1746204598618105959}
+  - {fileID: 3725463575091212336}
+  - {fileID: 3147322453537318474}
 --- !u!1 &4017749201600853951
 GameObject:
   m_ObjectHideFlags: 0

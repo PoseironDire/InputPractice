@@ -11,9 +11,10 @@ public class WeaponController : MonoBehaviour //(Spaghetti code atm, WIP)
     public GameObject melee;
 
     MovementController characterController;
-    GameObject projectilePrefab;
-    GameObject projectileSpawn;
 
+    public Transform projectileSpawn;
+    GameObject projectilePrefab;
+    [Space]
     [HideInInspector] public int weaponType = 1;
     [Range(0, 5)] public float useTime; //Time It Takes To Use
     [Space]
@@ -33,9 +34,8 @@ public class WeaponController : MonoBehaviour //(Spaghetti code atm, WIP)
 
     void Awake()
     {
-        projectilePrefab = (GameObject)Resources.Load("Prefabs/YellowProjectile", typeof(GameObject));
-        projectileSpawn = GameObject.Find("ProjectileSpawn");
         characterController = GetComponent<MovementController>();
+        projectilePrefab = (GameObject)Resources.Load("Prefabs/YellowProjectile", typeof(GameObject));
     }
 
     public void UseWeapon()
