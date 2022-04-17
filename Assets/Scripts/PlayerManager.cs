@@ -40,14 +40,8 @@ public class PlayerManager : MonoBehaviour
         if (playerManager.players.Length == 2) //If Total Players Are 2
         {
             //Camera Sizing
-            if (cam.gameObject.layer == 10)
-            {
-                cam.rect = new Rect(cam.rect.x, 0.5f, 1, 0.5f);
-            }
-            if (cam.gameObject.layer == 11)
-            {
-                cam.rect = new Rect(cam.rect.x, cam.rect.y, 1, 0.5f);
-            }
+            if (cam.gameObject.layer == 10) cam.rect = new Rect(cam.rect.x, 0.5f, 1, 0.5f);
+            if (cam.gameObject.layer == 11) cam.rect = new Rect(cam.rect.x, cam.rect.y, 1, 0.5f);
             splitViewSize = -viewSize / 4;
         }
         else if (playerManager.players.Length == 3) //If Total Players Are 3

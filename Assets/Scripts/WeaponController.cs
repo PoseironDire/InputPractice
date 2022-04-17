@@ -73,7 +73,7 @@ public class WeaponController : MonoBehaviour //(Spaghetti code atm, WIP)
             muzzleAnimator.SetBool("IsUsing", false);
         }
 
-        if (useTimer > useTime)
+        if (useTimer > useTime) //Disable Use
         {
             isUsing = false;
         }
