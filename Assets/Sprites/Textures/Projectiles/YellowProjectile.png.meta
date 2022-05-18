@@ -72,6 +72,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -316,6 +317,15 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      YellowProjectile_3: 1863050501442567428
+      YellowProjectile_2: -5108254446091388992
+      YellowProjectile_5: 8109916129236691310
+      YellowProjectile_4: 9185047057135129422
+      YellowProjectile_7: 5647034530613621127
+      YellowProjectile_0: 7980237580860590809
+      YellowProjectile_1: 4356921684714780816
+      YellowProjectile_6: 5767565183746142287
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

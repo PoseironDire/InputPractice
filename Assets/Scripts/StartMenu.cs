@@ -13,7 +13,7 @@ public class StartMenu : MonoBehaviour
 
     [Space]
 
-    public UnityEngine.Experimental.Rendering.Universal.Light2D light2D;
+    public UnityEngine.Rendering.Universal.Light2D light2D;
     bool scale; /**/ float lerp;
 
     [Range(0, 15)] public float maxLerp;
